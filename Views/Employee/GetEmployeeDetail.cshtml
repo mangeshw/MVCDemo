@@ -1,0 +1,35 @@
+﻿<style>
+    table, td {
+    border: 1px solid black;
+    padding: 10px;
+    }
+</style>
+@{
+    ViewBag.Title = "Employee Detail";
+}
+
+<h2>Employee Detail</h2>
+
+<table>
+    <tr>
+        <td><b>Employee ID:</b></td>
+        <td>@Model.EmployeeID</td>
+    </tr>
+    <tr>
+        <td><b>Name:</b></td>
+        <td>@Model.Name</td>
+    </tr>
+    <tr>
+        <td><b>Gender:</b></td>
+        <td>@Model.Gender</td>
+    </tr>
+    <tr>
+        <td><b>City:</b></td>
+        <td>@Model.City</td>
+    </tr>
+</table>
+
+<br /><br />
+@Html.ActionLink("Edit an Employee", "AddEmployee", new { EmployeeID = Model.EmployeeID.ToString() })
+<br />@Html.ActionLink("Employee List", "GetEmployeeList", new { departmentID = Model.DepartmentID })
+<br />@Html.ActionLink("Add an Employee", "AddEmployee")

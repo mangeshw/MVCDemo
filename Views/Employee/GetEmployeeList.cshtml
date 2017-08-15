@@ -1,0 +1,16 @@
+﻿@model List<MVCDemo.Models.Employee>
+
+@{
+    ViewBag.Title = "Employees List";
+}
+
+<h2>Employees List</h2>
+
+<ul>
+    @foreach (MVCDemo.Models.Employee emp in Model)
+    {
+        <li>@Html.ActionLink(emp.Name, "GetEmployeeDetail", new { @id = emp.EmployeeID })</li>
+    }
+</ul>
+
+@Html.ActionLink("Department List", "GetDepartments", "Department")

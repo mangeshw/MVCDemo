@@ -1,0 +1,90 @@
+﻿<style>
+    table, th, td {
+        border: 1px solid black;
+        padding: 10px;
+    }
+
+    .alterColor {
+        background-color: beige;
+    }
+
+    #marqueeDiv li {
+        display: inline;
+        list-style-type: none;
+        padding-right: 20px;
+    }
+
+</style>
+
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.picMarque.js"></script>
+<link href="~/Content/jquery.picMarque.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#table1 tbody tr:even").each(function () {
+            $("#table1 tbody tr:even").addClass("alterColor");
+        });
+
+        var picData = [      //image data（json），param：image（image path），title（image title），link（image link）
+				          {
+				              image: '~/Images/images1.jpg',
+				              title: 'image title 1',
+				              link: '#'
+				          },
+				          {
+				              image: '~/Images/images2.jpg',
+				              title: 'image title 2',
+				              link: '#'
+				          },
+				          {
+				              image: '~/Images/images3.jpg',
+				              title: 'image title 3',
+				              link: '#'
+				          }]
+
+        $("#marquePic").picMarque({
+            speed: 60,//scroll speed（ms）
+            errorimg: 'http://www.siaa.org.cn/style/common/nophoto.jpg',//error image path
+            data: picData
+        })
+    });
+</script>
+
+@{
+    ViewBag.Title = "Employees Details";
+}
+
+
+<div id="marquePic" style="width:1170px;"></div>
+
+@*<div id="marquePic">
+    <ul>
+        <li><img src="~/Images/images1.jpg" /></li>
+        <li><img src="~/Images/images2.jpg" /></li>
+        <li><img src="~/Images/images3.jpg" /></li>
+    </ul>
+</div>*@
+
+<h2>Employees Details</h2>
+
+<table id="table1">
+    <tr style="background-color:antiquewhite">
+        <th>ID</th>
+        <th>Name</th>
+        <th>City</th>
+        <th>Gender</th>
+    </tr>
+    @foreach (MVCDemo.Models.Employee emp in Model)
+    {
+        <tr>
+            <td>@emp.EmployeeID</td>
+            <td>@emp.Name</td>
+            <td>@emp.City</td>
+            <td>@emp.Gender</td>
+        </tr>
+    }
+</table>
+<br/>
+@Html.ActionLink("View All Departments", "GetDepartments", "Department")

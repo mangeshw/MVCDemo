@@ -1,0 +1,48 @@
+﻿@model MVCDemo.Models.Employee
+
+<style>
+    table, tr, td {
+        padding: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+</style>
+
+@{
+    ViewBag.Title = @Model == null ? "Add an Employee" : (@Model.EmployeeID != 0 ? "Edit an Employee" : "Add an Employee");
+}
+@using (Ajax.BeginForm("", new AjaxOptions())) {
+}
+@using (Html.BeginForm())
+{
+
+    <h2>@ViewBag.Title</h2>
+
+    <table>
+        <tr>
+            <td><span>Enter Name: </span></td>
+            <td>@Html.EditorFor(x => x.Name)</td>
+        </tr>
+        <tr>
+            <td><span>Enter Gender: </span></td>
+            <td>
+                @Html.DropDownList("Gender", new List<SelectListItem> {
+                new SelectListItem { Text="Male", Value="M"},
+                new SelectListItem { Text="Female", Value="F"} }, "Select Gender")
+        </td>
+    </tr>
+    <tr>
+        <td><span>Enter City: </span></td>
+        <td>@Html.EditorFor(x => x.City)</td>
+    </tr>
+    <tr>
+        <td><span>Enter Department: </span></td>
+        <td>@Html.EditorFor(x => x.DepartmentID)</td>
+    </tr>
+</table>
+    <br />
+
+    <input id="btnSubmit" type="submit" value="Add Employee" />
+    <input id="btnSave" type="submit" value="Save" />
+
+}
